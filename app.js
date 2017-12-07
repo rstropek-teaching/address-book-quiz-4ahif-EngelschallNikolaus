@@ -1,0 +1,12 @@
+"use strict";
+exports.__esModule = true;
+var restify_1 = require("restify");
+var deletePerson_1 = require("./deletePerson");
+var getAllPersons_1 = require("./getAllPersons");
+var addPerson_1 = require("./addPerson");
+var server = restify_1.createServer();
+server.use(restify_1.plugins.bodyParser());
+server.get('/api/contacts', getAllPersons_1.getAllPersons);
+server.post('/api/contacts', addPerson_1.addPerson);
+server.del('/api/contacts/:id', deletePerson_1.deletePerson);
+server.listen(8080, function () { return console.log('API is listening'); });
